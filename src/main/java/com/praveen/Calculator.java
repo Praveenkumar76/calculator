@@ -20,4 +20,6 @@ public class Calculator {
         }
         return a / b;
     }
+
+    // CI Demo
 }
