@@ -1,0 +1,35 @@
+format_version: 10
+
+pipelines:
+  calculator-cicd:
+    group: defaultGroup
+
+    materials:
+      git:
+        git: https://github.com/Praveenkumar76/calculator.git
+        branch: main
+
+    stages:
+
+      - Build:
+          jobs:
+            Build:
+              tasks:
+                - exec:
+                    command: ./scripts/build.sh
+
+      - Docker:
+          jobs:
+            Docker:
+              tasks:
+                - exec:
+                    command: ./scripts/docker-build.sh
+                - exec:
+                    command: ./scripts/docker-push.sh
+
+      - Deploy:
+          jobs:
+            Deploy:
+              tasks:
+                - exec:
+                    command: ./scripts/deploy.sh
