@@ -20,6 +20,7 @@ public class Calculator {
         }
         return a / b;
     }
+    public int x = 0;
 
     // CI Demo
     // SonarQube Demo
