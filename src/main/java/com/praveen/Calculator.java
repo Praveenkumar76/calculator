@@ -20,5 +20,5 @@ public class Calculator {
         }
         return a / b;
     }
-
+    int unused = 100;
 }
