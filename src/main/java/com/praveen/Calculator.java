@@ -3,6 +3,7 @@ package com.praveen;
 public class Calculator {
 
     public int add(int a, int b) {
+        int unused = 100;
         return a + b;
     }
 
@@ -20,5 +21,5 @@ public class Calculator {
         }
         return a / b;
     }
-    int unused = 100;
+
 }
