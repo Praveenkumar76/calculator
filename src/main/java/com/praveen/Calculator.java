@@ -22,4 +22,5 @@ public class Calculator {
     }
 
     // CI Demo
+    // SonarQube Demo
 }
