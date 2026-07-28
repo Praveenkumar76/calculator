@@ -5,17 +5,18 @@ pipelines:
     group: defaultGroup
 
     materials:
-      git:
+      calculator-repo:
         git: https://github.com/Praveenkumar76/calculator.git
         branch: main
+        destination: calculator
 
     stages:
-
       - Build:
           jobs:
             Build:
               tasks:
                 - exec:
+                    working_directory: calculator
                     command: ./scripts/build.sh
 
       - Docker:
@@ -23,8 +24,11 @@ pipelines:
             Docker:
               tasks:
                 - exec:
+                    working_directory: calculator
                     command: ./scripts/docker-build.sh
+
                 - exec:
+                    working_directory: calculator
                     command: ./scripts/docker-push.sh
 
       - Deploy:
@@ -32,4 +36,5 @@ pipelines:
             Deploy:
               tasks:
                 - exec:
+                    working_directory: calculator
                     command: ./scripts/deploy.sh
