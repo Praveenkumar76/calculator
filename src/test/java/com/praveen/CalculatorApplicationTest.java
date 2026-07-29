@@ -20,4 +20,9 @@ class CalculatorApplicationTest {
         assertNotNull(calculator);
         assertNotNull(healthController);
     }
+
+    @Test
+    void testMain() {
+        CalculatorApplication.main(new String[]{});
+    }
 }
