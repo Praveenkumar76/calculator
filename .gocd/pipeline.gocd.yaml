@@ -19,6 +19,14 @@ pipelines:
                     working_directory: calculator
                     command: ./scripts/build.sh
 
+      - Sonar:
+          jobs:
+            Sonar:
+              tasks:
+                - exec:
+                    working_directory: calculator
+                    command: ./scripts/sonar.sh
+
       - Docker:
           jobs:
             Docker:
