@@ -29,16 +29,5 @@ public class Calculator {
 
         return a * b;
     }
-//
-//    @GetMapping("/divide")
-//    public int divide(
-//            @RequestParam int a,
-//            @RequestParam int b) {
-//
-//        if (b == 0)
-//            throw new IllegalArgumentException("Division by zero");
-//
-//        return a / b;
-//    }
 
 }
