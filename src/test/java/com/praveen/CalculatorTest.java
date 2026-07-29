@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CalculatorTest {
 
     private final Calculator calculator = new Calculator();
+    public int x = 10;
 
     @Test
     void testAdd() {
