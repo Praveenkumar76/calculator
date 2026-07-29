@@ -60,6 +60,7 @@
 
                 <configuration>
                     <linkXRef>false</linkXRef>
+                    <includeTests>true</includeTests>
                     <failOnViolation>true</failOnViolation>
                     <printFailingErrors>true</printFailingErrors>
                 </configuration>

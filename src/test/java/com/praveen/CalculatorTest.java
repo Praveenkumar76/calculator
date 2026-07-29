@@ -28,4 +28,10 @@ class CalculatorTest {
         assertEquals(0, calculator.multiply(0, 10));
         assertEquals(-12, calculator.multiply(-3, 4));
     }
+
+    @Test
+    void pmdFailureProbe() {
+        int temporaryValue = 10;
+    }
+
 }
