@@ -1,13 +1,23 @@
 package com.praveen;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 class CalculatorApplicationTest {
 
+    @Autowired
+    private Calculator calculator;
+
+    @Autowired
+    private HealthController healthController;
+
     @Test
     void contextLoads() {
-        // Verifies Spring Boot application starts successfully
+        assertNotNull(calculator);
+        assertNotNull(healthController);
     }
 }
