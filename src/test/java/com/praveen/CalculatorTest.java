@@ -11,15 +11,21 @@ class CalculatorTest {
     @Test
     void testAdd() {
         assertEquals(5, calculator.add(2, 3));
+        assertEquals(0, calculator.add(-2, 2));
+        assertEquals(-5, calculator.add(-2, -3));
     }
 
     @Test
     void testSubtract() {
         assertEquals(2, calculator.subtract(5, 3));
+        assertEquals(-1, calculator.subtract(2, 3));
+        assertEquals(0, calculator.subtract(3, 3));
     }
 
     @Test
     void testMultiply() {
         assertEquals(15, calculator.multiply(3, 5));
+        assertEquals(0, calculator.multiply(0, 10));
+        assertEquals(-12, calculator.multiply(-3, 4));
     }
 }
