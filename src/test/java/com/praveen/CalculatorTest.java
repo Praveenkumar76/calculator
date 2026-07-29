@@ -35,4 +35,4 @@ class CalculatorTest {
         int temporaryValue = 10;
     }
 
-}
+}// Retrigger PMD validation
