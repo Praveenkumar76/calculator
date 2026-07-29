@@ -30,10 +30,7 @@ class CalculatorTest {
         assertEquals(-12, calculator.multiply(-3, 4));
     }
 
-    @Test
-    void pmdFailureProbe() {
-        int temporaryValue = 10;
-    }
+
 
 }// Retrigger PMD validation
 // trigger PR validation
