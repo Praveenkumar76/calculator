@@ -1,0 +1,24 @@
+format_version: 10
+
+pipelines:
+  calculator-pr-validation:
+    group: defaultGroup
+
+    materials:
+      calculator-pr:
+        scm: 3bef81d1-134e-4c63-a066-1348be620930
+        destination: calculator
+
+    stages:
+      - Validate:
+          clean_workspace: true
+
+          jobs:
+            Maven-Verify:
+              resources:
+                - pr-validation
+
+              tasks:
+                - exec:
+                    working_directory: calculator
+                    command: ./scripts/build.sh
