@@ -2,9 +2,6 @@ format_version: 10
 
 pipelines:
 
-  calculator-cicd:
-    ...
-
   calculator-rollback:
     group: defaultGroup
 
