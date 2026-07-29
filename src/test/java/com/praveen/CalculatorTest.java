@@ -29,4 +29,8 @@ class CalculatorTest {
         assertEquals(0, calculator.multiply(0, 10));
         assertEquals(-12, calculator.multiply(-3, 4));
     }
-}
+
+
+
+}// Retrigger PMD validation
+// trigger PR validation
