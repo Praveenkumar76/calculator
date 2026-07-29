@@ -1,24 +1,43 @@
 package com.praveen;
 
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api")
 public class Calculator {
 
-    public int add(int a, int b) {
-        int unused = 100;
+    @GetMapping("/add")
+    public int add(
+            @RequestParam int a,
+            @RequestParam int b) {
+
         return a + b;
     }
 
-    public int subtract(int a, int b) {
+    @GetMapping("/subtract")
+    public int subtract(
+            @RequestParam int a,
+            @RequestParam int b) {
+
         return a - b;
     }
 
-    public int multiply(int a, int b) {
+    @GetMapping("/multiply")
+    public int multiply(
+            @RequestParam int a,
+            @RequestParam int b) {
+
         return a * b;
     }
 
-    public int divide(int a, int b) {
-        if (b == 0) {
-            throw new IllegalArgumentException("Division by zero is not allowed");
-        }
+    @GetMapping("/divide")
+    public int divide(
+            @RequestParam int a,
+            @RequestParam int b) {
+
+        if (b == 0)
+            throw new IllegalArgumentException("Division by zero");
+
         return a / b;
     }
 
