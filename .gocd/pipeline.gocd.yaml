@@ -19,10 +19,23 @@ pipelines:
                     working_directory: calculator
                     command: ./scripts/build.sh
 
+              artifacts:
+                - build:
+                    source: calculator/target/calculator-1.0.0.jar
+                    destination: target
+
       - Docker:
           jobs:
             Docker:
               tasks:
+                - fetch:
+                    pipeline: calculator-cicd
+                    stage: Build
+                    job: Build
+                    artifact_origin: gocd
+                    source: target/calculator-1.0.0.jar
+                    destination: calculator/target
+
                 - exec:
                     working_directory: calculator
                     command: ./scripts/docker-build.sh

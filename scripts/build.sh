@@ -1,8 +1,10 @@
 #!/bin/bash
 set -e
 
-echo "========== BUILD START =========="
+echo "========== DOCKER BUILD START =========="
 
-mvn clean verify
+mvn clean package -DskipTests
 
-echo "========== BUILD SUCCESS =========="
+docker build -t skycorex/calculator:${GO_PIPELINE_COUNTER} .
+
+echo "========== DOCKER BUILD SUCCESS =========="
