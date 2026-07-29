@@ -21,4 +21,4 @@ pipelines:
               tasks:
                 - exec:
                     working_directory: calculator
-                    command: ./scripts/build.sh
+                    command: ./scripts/pr-validate.sh
