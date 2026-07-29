@@ -1,25 +1,22 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
-DEPLOYMENT_NAME="calculator"
+RELEASE="${HELM_RELEASE:-calculator}"
+NAMESPACE="${K8S_NAMESPACE:-default}"
+TIMEOUT="${HELM_TIMEOUT:-3m}"
 
-if [ -z "$1" ]; then
-    echo "Usage: $0 <revision>"
-    echo
-    kubectl rollout history deployment/${DEPLOYMENT_NAME}
-    exit 1
-fi
+echo "Emergency rollback requested for ${RELEASE}"
 
-REVISION=$1
+helm status "${RELEASE}" \
+  --namespace "${NAMESPACE}" \
+  >/dev/null
 
-echo "Available revisions:"
-kubectl rollout history deployment/${DEPLOYMENT_NAME}
+helm rollback \
+  "${RELEASE}" 0 \
+  --namespace "${NAMESPACE}" \
+  --wait \
+  --timeout "${TIMEOUT}"
 
-echo
-echo "Rolling back to revision ${REVISION}"
+./scripts/health-check.sh
 
-kubectl rollout undo deployment/${DEPLOYMENT_NAME} --to-revision=${REVISION}
-
-kubectl rollout status deployment/${DEPLOYMENT_NAME}
-
-echo "Rollback successful."
+echo "Emergency rollback completed successfully."

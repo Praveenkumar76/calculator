@@ -12,12 +12,14 @@ pipelines:
 
     stages:
       - Build:
+          clean_workspace: true
+
           jobs:
-            Build:
+            Quality-Gate:
               tasks:
                 - exec:
                     working_directory: calculator
-                    command: ./scripts/build.sh
+                    command: ./scripts/pr-validate.sh
 
       - Sonar:
           jobs:
@@ -41,7 +43,7 @@ pipelines:
 
       - Deploy:
           jobs:
-            Deploy:
+            Deploy-and-Verify:
               tasks:
                 - exec:
                     working_directory: calculator
@@ -55,11 +57,12 @@ pipelines:
         git: https://github.com/Praveenkumar76/calculator.git
         branch: main
         destination: calculator
+        ignore_for_scheduling: true
 
     stages:
       - Rollback:
           jobs:
-            Rollback:
+            Emergency-Rollback:
               tasks:
                 - exec:
                     working_directory: calculator
