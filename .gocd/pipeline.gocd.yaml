@@ -46,3 +46,21 @@ pipelines:
                 - exec:
                     working_directory: calculator
                     command: ./scripts/deploy.sh
+
+  calculator-rollback:
+    group: defaultGroup
+
+    materials:
+      calculator-repo:
+        git: https://github.com/Praveenkumar76/calculator.git
+        branch: main
+        destination: calculator
+
+    stages:
+      - Rollback:
+          jobs:
+            Rollback:
+              tasks:
+                - exec:
+                    working_directory: calculator
+                    command: ./scripts/rollback.sh
