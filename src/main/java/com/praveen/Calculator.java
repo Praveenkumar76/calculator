@@ -11,7 +11,7 @@ public class Calculator {
             @RequestParam int a,
             @RequestParam int b) {
 
-        return a + b;
+        return Math.addExact(a, b);
     }
 
     @GetMapping("/subtract")
