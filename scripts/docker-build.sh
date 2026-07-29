@@ -5,6 +5,9 @@ echo "========== DOCKER BUILD START =========="
 
 TAG=${GO_PIPELINE_COUNTER:-local}
 
+echo "Building JAR..."
+mvn clean package -DskipTests
+
 echo "Building image: skycorex/calculator:${TAG}"
 
 docker build \
