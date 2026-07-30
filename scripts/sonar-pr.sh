@@ -3,7 +3,7 @@
 set -euo pipefail
 
 SONAR_HOST_URL="http://host.docker.internal:9000"
-SONAR_TOKEN="PASTE_YOUR_CURRENT_SONAR_TOKEN_HERE"
+SONAR_TOKEN="squ_c1a768b8f81019da9083bc90047752c617defe94"
 
 : "${GO_SCM_CALCULATOR_PR_PR_ID:?PR ID is unavailable}"
 
