@@ -26,7 +26,7 @@ mvn \
     -Dsonar.projectKey="${PROJECT_KEY}" \
     -Dsonar.projectName="Calculator" \
     -Dsonar.host.url="${SONAR_HOST_URL}" \
-    -Dsonar.token="${SONAR_TOKEN}" \
+    -Dsonar.login="${SONAR_TOKEN}" \
     -Dsonar.coverage.jacoco.xmlReportPaths="${JACOCO_REPORT}" \
     -Dsonar.qualitygate.wait=true \
     -Dsonar.qualitygate.timeout=300

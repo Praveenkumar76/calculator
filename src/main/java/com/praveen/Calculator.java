@@ -30,4 +30,9 @@ public class Calculator {
         return a * b;
     }
 
+    public int qualityGateFailureProbe(int input) {
+        int temporaryValue = 10;
+        return input;
+    }
+
 }
