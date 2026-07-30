@@ -49,11 +49,11 @@ pipelines:
         destination: calculator
 
     stages:
-      - Main-Quality-Gate:
+      - Build:
           clean_workspace: true
 
           jobs:
-            Validate-Main:
+            Quality-Gate:
               tasks:
                 # Repeat all tests and coverage checks on merged main
                 - exec:
@@ -109,7 +109,7 @@ pipelines:
           approval: manual
 
           jobs:
-            Rollback:
+            Emergency-Rollback:
               tasks:
                 - exec:
                     working_directory: calculator
