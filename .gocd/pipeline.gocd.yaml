@@ -1,6 +1,44 @@
 format_version: 10
 
 pipelines:
+  calculator-pr-validation:
+    group: defaultGroup
+
+    materials:
+      calculator-pr:
+        scm: 3bef81d1-134e-4c63-a066-1348be620930
+        destination: calculator
+
+    stages:
+      - PR-Quality-Gate:
+          clean_workspace: true
+
+          jobs:
+            Validate-PR:
+              resources:
+                - pr-validation
+
+              tasks:
+                # JUnit + PMD + SpotBugs + JaCoCo
+                - exec:
+                    working_directory: calculator
+                    command: ./scripts/pr-validate.sh
+
+                # SonarQube Cloud PR analysis
+                # Runs only if the previous task passes
+                - exec:
+                    working_directory: calculator
+                    command: ./scripts/sonar-pr.sh
+
+              artifacts:
+                - test:
+                    source: calculator/target/surefire-reports
+                    destination: test-results
+
+                - build:
+                    source: calculator/target/site/jacoco
+                    destination: jacoco-report
+
   calculator-cicd:
     group: defaultGroup
 
@@ -11,27 +49,34 @@ pipelines:
         destination: calculator
 
     stages:
-      - Build:
+      - Main-Quality-Gate:
           clean_workspace: true
 
           jobs:
-            Quality-Gate:
+            Validate-Main:
               tasks:
+                # Repeat all tests and coverage checks on merged main
                 - exec:
                     working_directory: calculator
                     command: ./scripts/pr-validate.sh
 
-      - Sonar:
-          jobs:
-            Sonar:
-              tasks:
+                # Analyse main using the same SonarQube Cloud project
                 - exec:
                     working_directory: calculator
-                    command: ./scripts/sonar.sh
+                    command: ./scripts/sonar-main.sh
+
+              artifacts:
+                - test:
+                    source: calculator/target/surefire-reports
+                    destination: test-results
+
+                - build:
+                    source: calculator/target/site/jacoco
+                    destination: jacoco-report
 
       - Docker:
           jobs:
-            Docker:
+            Build-and-Push:
               tasks:
                 - exec:
                     working_directory: calculator
@@ -60,9 +105,11 @@ pipelines:
         ignore_for_scheduling: true
 
     stages:
-      - Rollback:
+      - Emergency-Rollback:
+          approval: manual
+
           jobs:
-            Emergency-Rollback:
+            Rollback:
               tasks:
                 - exec:
                     working_directory: calculator
